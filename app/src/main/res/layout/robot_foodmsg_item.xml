@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/simple_ripple"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/robot_foodmsg_item_title"
+        android:layout_width="268dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:maxWidth="280dp"
+        android:padding="10dp"
+        android:text="@string/app_name"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/robot_foodmsg_item_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="10dp"
+        android:text="@string/app_name"
+        android:textSize="14dp" />
+</LinearLayout>

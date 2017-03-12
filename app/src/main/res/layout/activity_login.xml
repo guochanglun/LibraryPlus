@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/login_avatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="70dp"
+        android:src="@mipmap/dog" />
+
+    <EditText
+        android:id="@+id/login_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_sel"
+        android:ems="10"
+        android:hint="用户名">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/login_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/input_sel"
+        android:ems="10"
+        android:hint="密码"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/btn_sel"
+        android:text="登录"
+        android:textColor="#666" />
+
+</LinearLayout>

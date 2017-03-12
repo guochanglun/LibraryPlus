@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3ab2a6</color>
+    <color name="colorPrimaryDark">#3ab2a6</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="navColor">#4675FF</color>
+
+    <!-- 波纹 -->
+    <color name="menuRippleColor">#ccc</color>
+
+    <!-- 菜单 -->
+    <color name="menuBackgroundColor">#fff</color>
+    <color name="menuDividerColor">#aaa</color>
+    <color name="menuLogoutColor">#e90b25</color>
+    <color name="menuSelectedBgColor">#9f7bd1</color>
+    <color name="menuSelectedTextColor">@color/colorPrimaryDark</color>
+    <color name="menuTextColor">#666</color>
+    <color name="accent_material_light">#13ccba</color>
+</resources>

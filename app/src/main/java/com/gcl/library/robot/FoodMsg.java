@@ -1,0 +1,38 @@
+package com.gcl.library.robot;
+
+import java.util.List;
+
+/**
+ * Created by gcl on 2017/3/7.
+ */
+
+public class FoodMsg{
+
+    private int code;
+    private String text;
+    private List<Food> list;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public List<Food> getList() {
+        return list;
+    }
+
+    public void setList(List<Food> list) {
+        this.list = list;
+    }
+}

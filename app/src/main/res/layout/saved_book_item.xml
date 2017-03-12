@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/simple_ripple"
+    android:elevation="3dp"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:id="@+id/saved_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:text="name"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/saved_place"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:text="name"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/saved_author"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:text="name"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/saved_publish"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:text="name"
+        android:textSize="12sp" />
+
+</LinearLayout>

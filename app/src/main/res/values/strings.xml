@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Library++</string>
+    <string name="open">OPEN</string>
+    <string name="close">CLOSE</string>
+    <string name="menu_borrowed">书刊借阅</string>
+    <string name="menu_search">书目检索</string>
+    <string name="menu_saved">我的收藏</string>
+    <string name="menu_advice">智能推荐</string>
+    <string name="menu_article">美文阅读</string>
+    <string name="menu_robot">小图机器人</string>
+    <string name="menu_logout">退出登录</string>
+</resources>

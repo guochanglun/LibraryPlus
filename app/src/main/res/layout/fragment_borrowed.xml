@@ -1,0 +1,14 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gcl.library.activity.BorrowedFragment">
+
+    <android.support.v7.widget.ListViewCompat
+        android:id="@+id/borrowed_book_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#eee"
+        android:dividerHeight="15dp" />
+</LinearLayout>

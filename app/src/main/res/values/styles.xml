@@ -1,0 +1,48 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--状态栏颜色-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--Toolbar颜色-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--返回键样式-->
+        <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
+
+        <item name="toolbarNavigationButtonStyle">@style/myToolbarNavigationButtonStyle</item>
+    </style>
+
+    <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="Menu">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/menuTextColor</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="Menu.Logout" parent="Menu"></style>
+
+    <style name="SimpleDivider">
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/menuDividerColor</item>
+    </style>
+
+    <style name="MenuDivider" parent="SimpleDivider">
+        <item name="android:layout_marginLeft">15dp</item>
+    </style>
+
+    <style name="FullHeightDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="myToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:color">@android:color/white</item>
+    </style>
+
+</resources>
