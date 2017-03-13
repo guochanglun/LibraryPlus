@@ -48,7 +48,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<Catalog> catalogs) {
                 if (catalogs != null) {
-                    Globle.articleCatalog = catalogs;
+                    Globle.ARTCLE_CATALOG = catalogs;
                 }
             }
         }.execute("");
@@ -65,7 +65,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                 new AsyncTask<String, Integer, Boolean>() {
                     @Override
                     protected Boolean doInBackground(String... params) {
-                        return HtmlService.login(params[0], params[1]);
+                        boolean login = HtmlService.login(params[0], params[1]);
+                        if (login) {
+                            Globle.USER_NAME = HtmlService.getUserName();
+                        }
+                        return login;
                     }
 
                     @Override

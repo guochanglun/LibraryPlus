@@ -42,17 +42,13 @@ public class ArticleFragment extends Fragment {
 
         View footerView = inflater.inflate(R.layout.list_footer, null);
         mListView.addFooterView(footerView);
-        mAdapter = new ArticleAdapter();
+        mAdapter = new ArticleAdapter(Globle.ARTCLE_CATALOG);
         mListView.setAdapter(mAdapter);
 
         // 检查网络连接
         if (!NetState.with(getContext()).detectNetState()) {
             ToastUtil.showMsg(getContext(), "喂，没联网");
             return view;
-        }
-
-        if (Globle.articleCatalog != null) {
-            mAdapter.setData(Globle.articleCatalog);
         }
 
         // 点击查看文章详情
@@ -80,8 +76,13 @@ public class ArticleFragment extends Fragment {
      */
     private class ArticleAdapter extends BaseAdapter {
 
-
         private List<Catalog> list = new ArrayList<>(0);
+
+        public ArticleAdapter(List<Catalog> list) {
+            if (list != null) {
+                this.list = list;
+            }
+        }
 
         // 注入list
         public void setData(List<Catalog> bookList) {

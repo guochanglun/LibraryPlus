@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.gcl.library.util.Globle;
 import com.gcl.library.util.ToastUtil;
 import com.tencent.smtt.sdk.QbSdk;
 
@@ -23,19 +24,20 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //声明相关变量
-    private Toolbar toolbar;
+    private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
 
-    private TextView menuBorrowed;
-    private TextView menuSaved;
-    private TextView menuSearch;
-    private TextView menuArticle;
-    private TextView menuRobot;
-    private TextView menuLogout;
+    private TextView mMenuUserName;
+    private TextView mMenuBorrowed;
+    private TextView mMenuSaved;
+    private TextView mMenuSearch;
+    private TextView mMenuArticle;
+    private TextView mMenuRobot;
+    private TextView mMenuLogout;
 
-    private List<TextView> menuList;
+    private List<TextView> mMenuList;
 
-    private FragmentManager fragmentManager;
+    private FragmentManager mFragmentManager;
 
     // 当前显示的fragment的ID
     private int mCurrentFragmentId = R.id.menu_borrowed;
@@ -48,21 +50,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 初始化QQ X5内核
         QbSdk.initX5Environment(MainActivity.this, null);
 
-        fragmentManager = getSupportFragmentManager();
+        mFragmentManager = getSupportFragmentManager();
 
         //获取控件
         findViews();
 
         //设置Toolbar标题
-        toolbar.setTitle("图书馆");
+        mToolbar.setTitle("图书馆");
         //设置标题颜色
-        toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
-        setSupportActionBar(toolbar);
+        mToolbar.setTitleTextColor(Color.parseColor("#ffffff"));
+        setSupportActionBar(mToolbar);
         //设置返回键可用
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //创建返回键，并实现打开关/闭监听
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open, R.string.close) {
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open, R.string.close) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -78,17 +80,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDrawerLayout.addDrawerListener(mDrawerToggle);
 
         initFragment();
-        selectMenu(menuBorrowed, BorrowedFragment.newInstance());
+        selectMenu(mMenuBorrowed, BorrowedFragment.newInstance());
 
         // 按钮添加监听
-        for (TextView tv : menuList) {
+        for (TextView tv : mMenuList) {
             tv.setOnClickListener(this);
         }
     }
 
     // 添加fragment
     private void initFragment() {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container, ArticleFragment.newInstance());
         fragmentTransaction.add(R.id.container, SearchFragment.newInstance());
         fragmentTransaction.add(R.id.container, RobotFragment.newInstance());
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // 切换fragment
     private void hideAllAndShowFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.hide(ArticleFragment.newInstance());
         fragmentTransaction.hide(SearchFragment.newInstance());
         fragmentTransaction.hide(RobotFragment.newInstance());
@@ -110,29 +112,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void findViews() {
-        toolbar = (Toolbar) findViewById(R.id.tl_custom);
+
+        mToolbar = (Toolbar) findViewById(R.id.tl_custom);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_left);
 
         // 初始化菜单
-        menuList = new ArrayList<>(7);
+        mMenuList = new ArrayList<>(7);
 
-        menuBorrowed = (TextView) findViewById(R.id.menu_borrowed);
-        menuList.add(menuBorrowed);
+        mMenuUserName = (TextView) findViewById(R.id.menu_username);
+        if (Globle.USER_NAME != null) {
+            mMenuUserName.setText(Globle.USER_NAME);
+        } else {
+            mMenuUserName.setText("辉夜姬");
+        }
 
-        menuSaved = (TextView) findViewById(R.id.menu_saved);
-        menuList.add(menuSaved);
+        mMenuBorrowed = (TextView) findViewById(R.id.menu_borrowed);
+        mMenuList.add(mMenuBorrowed);
 
-        menuSearch = (TextView) findViewById(R.id.menu_search);
-        menuList.add(menuSearch);
+        mMenuSaved = (TextView) findViewById(R.id.menu_saved);
+        mMenuList.add(mMenuSaved);
 
-        menuArticle = (TextView) findViewById(R.id.menu_article);
-        menuList.add(menuArticle);
+        mMenuSearch = (TextView) findViewById(R.id.menu_search);
+        mMenuList.add(mMenuSearch);
 
-        menuRobot = (TextView) findViewById(R.id.menu_robot);
-        menuList.add(menuRobot);
+        mMenuArticle = (TextView) findViewById(R.id.menu_article);
+        mMenuList.add(mMenuArticle);
 
-        menuLogout = (TextView) findViewById(R.id.menu_logout);
-        menuList.add(menuLogout);
+        mMenuRobot = (TextView) findViewById(R.id.menu_robot);
+        mMenuList.add(mMenuRobot);
+
+        mMenuLogout = (TextView) findViewById(R.id.menu_logout);
+        mMenuList.add(mMenuLogout);
     }
 
     @Override
@@ -140,20 +150,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mCurrentFragmentId = view.getId();
         switch (view.getId()) {
             case R.id.menu_borrowed:
-                selectMenu(menuBorrowed, BorrowedFragment.newInstance());
+                selectMenu(mMenuBorrowed, BorrowedFragment.newInstance());
                 break;
             case R.id.menu_search:
-                selectMenu(menuSearch, SearchFragment.newInstance());
+                selectMenu(mMenuSearch, SearchFragment.newInstance());
                 break;
             case R.id.menu_saved:
                 SavedFragment.newInstance().refreshData();
-                selectMenu(menuSaved, SavedFragment.newInstance());
+                selectMenu(mMenuSaved, SavedFragment.newInstance());
                 break;
             case R.id.menu_article:
-                selectMenu(menuArticle, ArticleFragment.newInstance());
+                selectMenu(mMenuArticle, ArticleFragment.newInstance());
                 break;
             case R.id.menu_robot:
-                selectMenu(menuRobot, RobotFragment.newInstance());
+                selectMenu(mMenuRobot, RobotFragment.newInstance());
                 break;
             case R.id.menu_logout:
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -164,12 +174,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void selectMenu(TextView view, Fragment fragment) {
         // 重置菜单颜色
-        for (TextView tv : menuList) {
+        for (TextView tv : mMenuList) {
             tv.setBackground(getResources().getDrawable(R.drawable.menu_ripple));
             tv.setTextColor(getResources().getColor(R.color.menuTextColor));
         }
 
-        toolbar.setTitle(view.getText());
+        mToolbar.setTitle(view.getText());
 
         // 替换fragment
         hideAllAndShowFragment(fragment);
@@ -201,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 // 返回BorrowedFragment
                 mCurrentFragmentId = R.id.menu_borrowed;
-                selectMenu(menuBorrowed, BorrowedFragment.newInstance());
+                selectMenu(mMenuBorrowed, BorrowedFragment.newInstance());
         }
     }
 }

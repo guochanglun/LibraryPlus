@@ -65,6 +65,26 @@ public class NetService {
         return result;
     }
 
+    // 获取用户姓名
+    public static String getUserName() {
+        HttpGet get = new HttpGet(Const.NAME_URL);
+        get.setHeader("Referer",
+                "http://222.206.65.12/reader/redr_cust_result.php");
+        String result = null;
+        try {
+            CloseableHttpResponse response = Client.client.execute(get);
+            result = EntityUtils.toString(response.getEntity(), "utf-8");
+            response.close();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     /**
      * 获取借阅的书的信息
      */

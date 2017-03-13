@@ -50,6 +50,17 @@ public class HtmlService {
     }
 
     /**
+     * 获取用户姓名
+     */
+    public static String getUserName() {
+        String result = NetService.getUserName();
+        Document doc = Jsoup.parse(result);
+        Element div = doc.select("#menu div").get(0);
+        String name = div.text().split(" ")[0];
+        return name;
+    }
+
+    /**
      * 获取已经借过的书
      */
     public static List<BorrowBook> getBorrowedBook() {

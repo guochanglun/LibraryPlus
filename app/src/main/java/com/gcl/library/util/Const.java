@@ -6,14 +6,11 @@ package com.gcl.library.util;
 
 public class Const {
 
-
-    public static String USER_NUM = "";
-
-    // 首页地址
-    public static String INDEX_URL = "http://lib.sdut.edu.cn/";
-
     // 登录地址
     public static String LOGIN_URL = "http://222.206.65.12/reader/redr_verify.php";
+
+    // 获取姓名
+    public static String NAME_URL = "http://222.206.65.12/reader/redr_cust_result.php";
 
     // 查看借阅信息
     public static String BORROW_URL = "http://222.206.65.12/reader/book_lst.php";
@@ -47,5 +44,7 @@ public class Const {
 
     // 图灵机器人api
     public static String TULING_API_URL = "http://www.tuling123.com/openapi/api";
+
+    public static String USER_BORROWED_BOOK_COUNT = "USER_BORROWED_BOOK_COUNT";
 
 }

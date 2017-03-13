@@ -9,4 +9,7 @@
     <string name="menu_article">美文阅读</string>
     <string name="menu_robot">小图机器人</string>
     <string name="menu_logout">退出登录</string>
+    <string name="appwidget_text">书刊借阅</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
 </resources>
