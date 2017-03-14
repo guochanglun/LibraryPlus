@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //获取控件
         findViews();
 
+        // 初始化MusicUtil
+        MusicUtil.initContext(this, mMenuMusic);
+
         //设置Toolbar标题
         mToolbar.setTitle("图书馆");
         //设置标题颜色
@@ -68,7 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //设置返回键可用
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //创建返回键，并实现打开关/闭监听
+
+        //打开关/闭监听
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open, R.string.close) {
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -131,8 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMenuAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicUtil.stop(mMenuMusic);
-                MusicUtil.start(MainActivity.this, mMenuMusic);
+                MusicUtil.next();
             }
         });
 
@@ -140,7 +143,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMenuMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MusicUtil.stop(v);
+                if (MusicUtil.playMusic) {
+                    MusicUtil.pause();
+                } else {
+                    MusicUtil.start();
+                }
             }
         });
 
