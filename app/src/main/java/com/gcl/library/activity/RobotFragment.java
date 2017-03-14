@@ -35,6 +35,7 @@ import com.gcl.library.robot.UrlMsg;
 import com.gcl.library.service.HtmlService;
 import com.gcl.library.util.DateFormatUtil;
 import com.gcl.library.util.DensityUtil;
+import com.gcl.library.util.Globle;
 import com.gcl.library.util.NetState;
 import com.gcl.library.util.PhoneWindowUtil;
 import com.gcl.library.util.ToastUtil;
@@ -208,10 +209,17 @@ public class RobotFragment extends Fragment {
                         Intent intent = new Intent(getContext(), WebViewActivity.class);
                         intent.putExtra("url", msg.getUrl());
                         intent.putExtra("title", "网页链接");
+
+                        // 控制音乐播放
+                        Globle.IN_MY_APP = true;
+
                         getContext().startActivity(intent);
                     }
                 });
-            } else if (obj.getClass() == NewsMsg.class) {
+            }
+
+            // 新闻类消息
+            else if (obj.getClass() == NewsMsg.class) {
                 final NewsMsg msg = (NewsMsg) obj;
 
                 ViewGroup container = (ViewGroup) LinearLayout.inflate(getContext(), R.layout.robot_newsmsg_container, null);
@@ -283,6 +291,10 @@ public class RobotFragment extends Fragment {
                             Intent intent = new Intent(getContext(), WebViewActivity.class);
                             intent.putExtra("url", news.getDetailurl());
                             intent.putExtra("title", news.getArticle());
+
+                            // 控制音乐播放
+                            Globle.IN_MY_APP = true;
+
                             getContext().startActivity(intent);
                         }
                     });
@@ -296,7 +308,10 @@ public class RobotFragment extends Fragment {
                 // 赋值
                 convertView = container;
 
-            } else if (obj.getClass() == FoodMsg.class) {
+            }
+
+            // 菜谱类消息
+            else if (obj.getClass() == FoodMsg.class) {
 
                 final FoodMsg msg = (FoodMsg) obj;
 
@@ -348,6 +363,10 @@ public class RobotFragment extends Fragment {
                             Intent intent = new Intent(getContext(), WebViewActivity.class);
                             intent.putExtra("url", food.getDetailurl());
                             intent.putExtra("title", food.getName());
+
+                            // 控制音乐播放
+                            Globle.IN_MY_APP = true;
+
                             getContext().startActivity(intent);
                         }
                     });
@@ -371,4 +390,4 @@ public class RobotFragment extends Fragment {
         super.onResume();
         mAdapter.setData(mAdapter.getData());
     }
-}  // 360行，行行出状元！！！
+}

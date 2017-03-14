@@ -23,6 +23,10 @@ public class MusicUtil {
 
     // 是否播放
     public static boolean playMusic;
+
+    // 是否暂停音乐
+    public static boolean pauseMusic;
+
     private static int i = 0;
 
     static {
@@ -66,6 +70,7 @@ public class MusicUtil {
         });
         mPlayer.start();
         playMusic = true;
+        pauseMusic = false;
     }
 
     public static void stop() {
@@ -87,6 +92,9 @@ public class MusicUtil {
     }
 
 
+    /**
+     * 播放下一首
+     */
     private static int getNextMusicId() {
         i++;
         return mMusicList[i % mMusicList.length];
@@ -96,6 +104,7 @@ public class MusicUtil {
         if (mPlayer != null) {
             mPlayer.pause();
             playMusic = false;
+            pauseMusic = true;
             mRotateAnimation.cancel();
         }
     }
@@ -108,6 +117,18 @@ public class MusicUtil {
         } else {
             startNewMusic();
         }
+        pauseMusic = false;
         playMusic = true;
+    }
+
+    public static void release() {
+        if (mPlayer != null) {
+            mPlayer.stop();
+            mPlayer.release();
+            mPlayer = null;
+            playMusic = false;
+            pauseMusic = false;
+            mRotateAnimation.cancel();
+        }
     }
 }

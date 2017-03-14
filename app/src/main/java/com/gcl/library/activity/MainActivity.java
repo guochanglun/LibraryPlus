@@ -136,6 +136,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 MusicUtil.next();
+                if (!Globle.IS_TOAST_USER_PLAY_NATIVE_MUSIC) {
+                    ToastUtil.showMsg(MainActivity.this, "播放本地歌曲");
+                    Globle.IS_TOAST_USER_PLAY_NATIVE_MUSIC = true;
+                }
             }
         });
 
@@ -148,6 +152,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     MusicUtil.start();
                 }
+
+                if (!Globle.IS_TOAST_USER_PLAY_NATIVE_MUSIC) {
+                    ToastUtil.showMsg(MainActivity.this, "播放本地歌曲");
+                    Globle.IS_TOAST_USER_PLAY_NATIVE_MUSIC = true;
+                }
+
             }
         });
 
@@ -230,6 +240,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     ToastUtil.showMsg(this, "再按一次退出程序");
                     time0 = time;
                 } else {
+                    MusicUtil.release();
                     finish();
                 }
                 break;
@@ -237,6 +248,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // 返回BorrowedFragment
                 mCurrentFragmentId = R.id.menu_borrowed;
                 selectMenu(mMenuBorrowed, BorrowedFragment.newInstance());
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MusicUtil.release();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (!Globle.IN_MY_APP) {
+            MusicUtil.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Globle.IN_MY_APP = false;
+
+        if (MusicUtil.pauseMusic) {
+            MusicUtil.start();
         }
     }
 }

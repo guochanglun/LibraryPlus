@@ -64,6 +64,10 @@ public class ArticleFragment extends Fragment {
                 Intent intent = new Intent(getContext(), WebViewActivity.class);
                 intent.putExtra("url", Const.ARTICLE_DETAIL + "?id=" + aId);
                 intent.putExtra("title", catalog.getTitle());
+
+                // 控制音乐播放
+                Globle.IN_MY_APP = true;
+
                 getContext().startActivity(intent);
             }
         });
