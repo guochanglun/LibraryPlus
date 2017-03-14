@@ -269,8 +269,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         Globle.IN_MY_APP = false;
-
-        if (MusicUtil.pauseMusic) {
+        if (MusicUtil.pauseMusicWithSystem) {
             MusicUtil.start();
         }
     }

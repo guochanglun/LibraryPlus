@@ -190,7 +190,7 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (MusicUtil.pauseMusic) {
+        if (MusicUtil.pauseMusicWithSystem) {
             MusicUtil.start();
         }
     }

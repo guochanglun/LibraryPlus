@@ -25,7 +25,7 @@ public class MusicUtil {
     public static boolean playMusic;
 
     // 是否暂停音乐
-    public static boolean pauseMusic;
+    public static boolean pauseMusicWithSystem;
 
     private static int i = 0;
 
@@ -70,7 +70,7 @@ public class MusicUtil {
         });
         mPlayer.start();
         playMusic = true;
-        pauseMusic = false;
+        pauseMusicWithSystem = false;
     }
 
     public static void stop() {
@@ -104,13 +104,18 @@ public class MusicUtil {
         if (mPlayer != null) {
             mPlayer.pause();
             playMusic = false;
+            pauseMusicWithSystem = false;
             mRotateAnimation.cancel();
         }
     }
 
     public static void pauseWithSystem() {
-        pause();
-        pauseMusic = true;
+        if (playMusic) {
+            pauseMusicWithSystem = true;
+            mPlayer.pause();
+            playMusic = false;
+            mRotateAnimation.cancel();
+        }
     }
 
     public static void start() {
@@ -121,7 +126,7 @@ public class MusicUtil {
         } else {
             startNewMusic();
         }
-        pauseMusic = false;
+        pauseMusicWithSystem = false;
         playMusic = true;
     }
 
@@ -131,7 +136,7 @@ public class MusicUtil {
             mPlayer.release();
             mPlayer = null;
             playMusic = false;
-            pauseMusic = false;
+            pauseMusicWithSystem = false;
             mRotateAnimation.cancel();
         }
     }
