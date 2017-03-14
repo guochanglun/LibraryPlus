@@ -196,6 +196,12 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        mIsBackToMainActivity = true;
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (webView != null)
