@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.gcl.library.util.MusicUtil;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
@@ -31,6 +32,8 @@ public class WebViewActivity extends AppCompatActivity {
     private TextView mWebViewTitle;
 
     private boolean mIsFullScreen = false;
+
+    private boolean mIsBackToMainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class WebViewActivity extends AppCompatActivity {
         mWebViewToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mIsBackToMainActivity = true;
                 finish();
             }
         });
@@ -178,6 +182,17 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        if (!mIsBackToMainActivity) {
+            MusicUtil.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (MusicUtil.pauseMusic) {
+            MusicUtil.start();
+        }
     }
 
     @Override
@@ -230,4 +245,5 @@ public class WebViewActivity extends AppCompatActivity {
         getWindow().setAttributes(attrs);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
+
 }
