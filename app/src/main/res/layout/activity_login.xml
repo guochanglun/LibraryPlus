@@ -23,7 +23,10 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/input_sel"
         android:ems="10"
-        android:hint="用户名">
+        android:hint="用户名"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:maxLines="1">
 
         <requestFocus />
     </EditText>
@@ -36,7 +39,9 @@
         android:background="@drawable/input_sel"
         android:ems="10"
         android:hint="密码"
-        android:inputType="textPassword" />
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:maxLines="1" />
 
     <Button
         android:id="@+id/login_btn"
