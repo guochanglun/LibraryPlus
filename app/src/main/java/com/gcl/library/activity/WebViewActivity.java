@@ -196,12 +196,6 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        mIsBackToMainActivity = true;
-        super.onBackPressed();
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (webView != null)
@@ -220,6 +214,7 @@ public class WebViewActivity extends AppCompatActivity {
                     // goBack()表示返回WebView的上一页面
                     webView.goBack();
                 } else {
+                    mIsBackToMainActivity = true;
                     this.finish();
                 }
             }
