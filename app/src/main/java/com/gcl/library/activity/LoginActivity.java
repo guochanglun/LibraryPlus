@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.gcl.library.db.DatabaseHelper;
 import com.gcl.library.db.User;
 import com.gcl.library.service.HtmlService;
+import com.gcl.library.util.Globle;
 import com.gcl.library.util.NetState;
 import com.gcl.library.util.ToastUtil;
 
@@ -56,13 +57,12 @@ public class LoginActivity extends AppCompatActivity {
                 new AsyncTask<String, Integer, Boolean>() {
                     @Override
                     protected Boolean doInBackground(String... params) {
-                        return HtmlService.login(params[0], params[1]);
-                    }
+                        boolean login = HtmlService.login(params[0], params[1]);
+                        if (login) {
 
-                    @Override
-                    protected void onPostExecute(Boolean result) {
-                        if (result) {
-                            ToastUtil.showMsg(LoginActivity.this, "登录成功");
+                            Globle.USER_NAME = HtmlService.getUserName();
+
+                            //ToastUtil.showMsg(LoginActivity.this, "登录成功");
 
                             // 保存用户名密码
                             User user = new User(1, nameString, pwdString);
@@ -73,6 +73,13 @@ public class LoginActivity extends AppCompatActivity {
                                 ToastUtil.showMsg(LoginActivity.this, "夭寿啦！不能保存账号密码!!");
                                 e.printStackTrace();
                             }
+                        }
+                        return login;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Boolean result) {
+                        if (result) {
                             // 跳转
                             LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             LoginActivity.this.finish();

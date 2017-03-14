@@ -53,7 +53,11 @@ public class SavedDetailDialog extends Dialog {
         // 给控件赋值
         Picasso.with(mContext).load(mBook.getImage()).into(pic);
         title.setText(mBook.getTitle());
-        author.setText("作者：" + mBook.getOrigin_title());
+        String a = "";
+        for (String s : mBook.getAuthor()) {
+            a += s + " ";
+        }
+        author.setText("作者：" + a);
         pubdate.setText("出版时间：" + mBook.getPubdate());
         publisher.setText("出版社：" + mBook.getPublisher());
         price.setText("豆瓣出售：" + mBook.getPrice());

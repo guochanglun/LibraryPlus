@@ -15,5 +15,5 @@ public class Globle {
     public static List<Catalog> ARTCLE_CATALOG;
 
     // 登录的用户名
-    public static String USER_NAME;
+    public static String USER_NAME = "辉夜姬";
 }

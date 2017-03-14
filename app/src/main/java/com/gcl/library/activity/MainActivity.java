@@ -3,6 +3,7 @@ package com.gcl.library.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,9 +13,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gcl.library.util.Globle;
+import com.gcl.library.util.MusicUtil;
 import com.gcl.library.util.ToastUtil;
 import com.tencent.smtt.sdk.QbSdk;
 
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
 
+    private ImageView mMenuAvatar;
+    private FloatingActionButton mMenuMusic;
     private TextView mMenuUserName;
     private TextView mMenuBorrowed;
     private TextView mMenuSaved;
@@ -120,11 +125,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMenuList = new ArrayList<>(7);
 
         mMenuUserName = (TextView) findViewById(R.id.menu_username);
-        if (Globle.USER_NAME != null) {
-            mMenuUserName.setText(Globle.USER_NAME);
-        } else {
-            mMenuUserName.setText("辉夜姬");
-        }
+        mMenuUserName.setText(Globle.USER_NAME);
+
+        mMenuAvatar = (ImageView) findViewById(R.id.menu_avatar);
+        mMenuAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MusicUtil.stop(mMenuMusic);
+                MusicUtil.start(MainActivity.this, mMenuMusic);
+            }
+        });
+
+        mMenuMusic = (FloatingActionButton) findViewById(R.id.menu_music);
+        mMenuMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MusicUtil.stop(v);
+            }
+        });
 
         mMenuBorrowed = (TextView) findViewById(R.id.menu_borrowed);
         mMenuList.add(mMenuBorrowed);
