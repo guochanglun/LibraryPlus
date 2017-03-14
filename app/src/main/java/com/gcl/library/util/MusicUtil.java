@@ -104,9 +104,13 @@ public class MusicUtil {
         if (mPlayer != null) {
             mPlayer.pause();
             playMusic = false;
-            pauseMusic = true;
             mRotateAnimation.cancel();
         }
+    }
+
+    public static void pauseWithSystem() {
+        pause();
+        pauseMusic = true;
     }
 
     public static void start() {

@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStop() {
         super.onStop();
         if (!Globle.IN_MY_APP) {
-            MusicUtil.pause();
+            MusicUtil.pauseWithSystem();
         }
     }
 
