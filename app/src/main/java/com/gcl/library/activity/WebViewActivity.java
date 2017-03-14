@@ -183,7 +183,7 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         if (!mIsBackToMainActivity) {
-            MusicUtil.pause();
+            MusicUtil.pauseWithSystem();
         }
     }
 
