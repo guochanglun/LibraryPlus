@@ -10,7 +10,7 @@
 
     <!-- 菜单 -->
     <color name="menuBackgroundColor">#fff</color>
-    <color name="menuDividerColor">#aaa</color>
+    <color name="menuDividerColor">#ccc</color>
     <color name="menuLogoutColor">#e90b25</color>
     <color name="menuSelectedBgColor">#9f7bd1</color>
     <color name="menuSelectedTextColor">@color/colorPrimaryDark</color>
