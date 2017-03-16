@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gcl.library.db.DatabaseHelper;
 import com.gcl.library.util.Globle;
 import com.gcl.library.util.MusicUtil;
 import com.gcl.library.util.ToastUtil;
@@ -255,6 +256,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         super.onDestroy();
         MusicUtil.release();
+        DatabaseHelper.getHelper(this).close();
     }
 
     @Override
