@@ -61,7 +61,7 @@ public static Connection getConnection() {
 		}
 
 		// 连接MySql数据库，用户名和密码都是root
-		String url = "jdbc:mysql://115.28.101.171:3306/library?useUnicode=true&characterEncoding=UTF-8";
+		String url = "jdbc:mysql://***.**.***.**:3306/library?useUnicode=true&characterEncoding=UTF-8";
 		String username = "root";
 		try {
 			conn = DriverManager.getConnection(url, username, password);
