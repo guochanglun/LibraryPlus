@@ -74,7 +74,7 @@ public class RobotFragment extends Fragment {
 
         // 打个招呼，消息
         TextMsg textMsg = new TextMsg();
-        textMsg.setText("蝴蝶是我，我就是蝴蝶....");
+        textMsg.setText("我是小游啦~~");
         mAdapter.getData().add(textMsg);
 
         // 隐藏软键盘
@@ -100,7 +100,7 @@ public class RobotFragment extends Fragment {
 
                 // 检查网络连接
                 if (!NetState.with(getContext()).detectNetState()) {
-                    ToastUtil.showMsg(getContext(), "你特么没联网，发个毛信息啊！！");
+                    ToastUtil.showMsg(getContext(), "你特么没联网，滚！！");
                     return;
                 }
 
@@ -148,27 +148,27 @@ public class RobotFragment extends Fragment {
         }
 
         public List<Object> getData() {
-            return list;
-        }
+                return list;
+            }
 
-        @Override
-        public int getCount() {
-            return list.size();
-        }
+            @Override
+            public int getCount() {
+                return list.size();
+            }
 
-        @Override
-        public Object getItem(int position) {
-            return list.get(position);
-        }
+            @Override
+            public Object getItem(int position) {
+                return list.get(position);
+            }
 
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            Object obj = this.list.get(position);
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                Object obj = this.list.get(position);
 
             // 用户发送的消息
             if (obj.getClass() == SimpleUserMessage.class) {
