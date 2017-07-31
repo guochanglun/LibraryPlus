@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.gcl.library.db.DatabaseHelper;
 import com.gcl.library.util.Globle;
-import com.gcl.library.util.MusicUtil;
 import com.gcl.library.util.ToastUtil;
 import com.tencent.smtt.sdk.QbSdk;
 
@@ -32,12 +31,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout mDrawerLayout;
 
     private ImageView mMenuAvatar;
-    private FloatingActionButton mMenuMusic;
     private TextView mMenuUserName;
     private TextView mMenuBorrowed;
     private TextView mMenuSaved;
     private TextView mMenuSearch;
-    private TextView mMenuArticle;
     private TextView mMenuRobot;
     private TextView mMenuLogout;
 
@@ -60,9 +57,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //获取控件
         findViews();
-
-        // 初始化MusicUtil
-        MusicUtil.initContext(this, mMenuMusic);
 
         //设置Toolbar标题
         mToolbar.setTitle("图书馆");
@@ -101,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // 添加fragment
     private void initFragment() {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.container, ArticleFragment.newInstance());
         fragmentTransaction.add(R.id.container, SearchFragment.newInstance());
         fragmentTransaction.add(R.id.container, RobotFragment.newInstance());
         fragmentTransaction.add(R.id.container, SavedFragment.newInstance());
@@ -112,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // 切换fragment
     private void hideAllAndShowFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.hide(ArticleFragment.newInstance());
         fragmentTransaction.hide(SearchFragment.newInstance());
         fragmentTransaction.hide(RobotFragment.newInstance());
         fragmentTransaction.hide(SavedFragment.newInstance());
@@ -133,34 +125,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMenuUserName.setText(Globle.USER_NAME);
 
         mMenuAvatar = (ImageView) findViewById(R.id.menu_avatar);
-        mMenuAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MusicUtil.next();
-                if (!Globle.IS_TOAST_USER_PLAY_NATIVE_MUSIC) {
-                    ToastUtil.showMsg(MainActivity.this, "播放本地歌曲");
-                    Globle.IS_TOAST_USER_PLAY_NATIVE_MUSIC = true;
-                }
-            }
-        });
-
-        mMenuMusic = (FloatingActionButton) findViewById(R.id.menu_music);
-        mMenuMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (MusicUtil.playMusic) {
-                    MusicUtil.pause();
-                } else {
-                    MusicUtil.start();
-                }
-
-                if (!Globle.IS_TOAST_USER_PLAY_NATIVE_MUSIC) {
-                    ToastUtil.showMsg(MainActivity.this, "播放本地歌曲");
-                    Globle.IS_TOAST_USER_PLAY_NATIVE_MUSIC = true;
-                }
-
-            }
-        });
 
         mMenuBorrowed = (TextView) findViewById(R.id.menu_borrowed);
         mMenuList.add(mMenuBorrowed);
@@ -170,9 +134,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mMenuSearch = (TextView) findViewById(R.id.menu_search);
         mMenuList.add(mMenuSearch);
-
-        mMenuArticle = (TextView) findViewById(R.id.menu_article);
-        mMenuList.add(mMenuArticle);
 
         mMenuRobot = (TextView) findViewById(R.id.menu_robot);
         mMenuList.add(mMenuRobot);
@@ -194,9 +155,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.menu_saved:
                 SavedFragment.newInstance().refreshData();
                 selectMenu(mMenuSaved, SavedFragment.newInstance());
-                break;
-            case R.id.menu_article:
-                selectMenu(mMenuArticle, ArticleFragment.newInstance());
                 break;
             case R.id.menu_robot:
                 selectMenu(mMenuRobot, RobotFragment.newInstance());
@@ -241,7 +199,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     ToastUtil.showMsg(this, "再按一次退出程序");
                     time0 = time;
                 } else {
-                    MusicUtil.release();
                     finish();
                 }
                 break;
@@ -255,24 +212,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MusicUtil.release();
         DatabaseHelper.getHelper(this).close();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (!Globle.IN_MY_APP) {
-            MusicUtil.pauseWithSystem();
-        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Globle.IN_MY_APP = false;
-        if (MusicUtil.pauseMusicWithSystem) {
-            MusicUtil.start();
-        }
     }
 }

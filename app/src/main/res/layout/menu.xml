@@ -32,18 +32,6 @@
             android:textSize="20dp" />
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/menu_music"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/menu_people"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="-25dp"
-        android:layout_marginRight="16dp"
-        android:background="@android:color/white"
-        android:src="@mipmap/music"
-        app:backgroundTint="@android:color/white" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -119,31 +107,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/menu_saved" />
-        </LinearLayout>
-
-        <View
-            style="@style/MenuDivider"
-            android:layout_width="match_parent" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/menu_ripple"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp">
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:src="@mipmap/award" />
-
-            <TextView
-                android:id="@+id/menu_article"
-                style="@style/Menu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/menu_article" />
         </LinearLayout>
 
         <View

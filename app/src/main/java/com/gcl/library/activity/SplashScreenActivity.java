@@ -38,21 +38,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             finish();
         }
 
-        // 预加载文章列表
-        new AsyncTask<String, Integer, List<Catalog>>() {
-            @Override
-            protected List<Catalog> doInBackground(String... params) {
-                return HtmlService.getArticle();
-            }
-
-            @Override
-            protected void onPostExecute(List<Catalog> catalogs) {
-                if (catalogs != null) {
-                    Globle.ARTCLE_CATALOG = catalogs;
-                }
-            }
-        }.execute("");
-
         try {
             Dao<User, Integer> mUserDao = DatabaseHelper.getHelper(SplashScreenActivity.this).getUserDao();
             List<User> users = mUserDao.queryForAll();
